@@ -23,6 +23,26 @@ void addStudent() {
     cout << "\n[Success] Student added successfully!\n\n";
 }
 
+void viewStudents() {
+    if (students.empty()) {
+        cout << "\n[Info] No students found in the system.\n\n";
+        return;
+    }
+
+    cout << "\n-----------------------------------------" << endl;
+    cout << left << setw(10) << "ID" 
+         << setw(20) << "Name" 
+         << setw(10) << "GPA" << endl;
+    cout << "-----------------------------------------" << endl;
+
+    for (const auto& s : students) {
+        cout << left << setw(10) << s.id 
+             << setw(20) << s.name 
+             << setw(10) << fixed << setprecision(2) << s.gpa << endl;
+    }
+    cout << "-----------------------------------------\n" << endl;
+}
+
 int main() {
     int choice;
     while (true) {
@@ -38,11 +58,13 @@ int main() {
 
         if (choice == 1) {
             addStudent();
+        } else if (choice == 2) {
+            viewStudents();
         } else if (choice == 3) {
             cout << "Exiting program. Goodbye!" << endl;
             break;
         } else {
-            cout << "Feature not available or invalid choice!\n" << endl;
+            cout << "Invalid choice! Please try again.\n" << endl;
         }
     }
 
